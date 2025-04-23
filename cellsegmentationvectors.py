@@ -32,6 +32,12 @@ def convert_to_native(obj):
         return [convert_to_native(i) for i in obj]  # Recursively apply for lists
     return obj
 
+
+#helper function to convert hex to Xenium string
+# https://www.10xgenomics.com/support/software/xenium-onboard-analysis/1.9/analysis/xoa-output-zarr#cellID
+def shiftCharacters(c):
+    return chr(ord('a')+int(c,16))
+
 # Helper function to process each polygon set and link it to cell_id
 def process_polygon_set(set_index):
     features_by_cell_id = {}
@@ -56,6 +62,9 @@ def process_polygon_set(set_index):
             
             # Get the corresponding cell_id using the cell_index
             cell_id = int(cell_id_data[cell_index[i]][0])  # First value in each pair is the unique cell_id
+            cellhex = format(cell_id,'08x')
+            cellIDshifted = ''.join(shiftCharacters(c) for c in cellhex)
+            cellIDfinal = cellIDshifted+'-'+str(cell_id_data[i][1])
             
             # Check if the cell_id already exists in the feature collection
             if cell_id not in features_by_cell_id:
@@ -73,7 +82,8 @@ def process_polygon_set(set_index):
                     },
                     "properties": {
                         "cell_id": cell_id,  # Only the cell_id is kept in the properties
-                        "objectType": "cell"
+                        "objectType": "cell",
+                        "name": cellIDfinal
                     }
                 }
             
