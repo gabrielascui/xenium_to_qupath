@@ -64,7 +64,7 @@ def process_polygon_set(set_index):
             cell_id = int(cell_id_data[cell_index[i]][0])  # First value in each pair is the unique cell_id
             cellhex = format(cell_id,'08x')
             cellIDshifted = ''.join(shiftCharacters(c) for c in cellhex)
-            cellIDfinal = cellIDshifted+'-'+str(cell_id_data[i][1])
+            cellIDfinal = cellIDshifted+'-'+str(cell_id_data[cell_index[i]][1])
             
             # Check if the cell_id already exists in the feature collection
             if cell_id not in features_by_cell_id:
