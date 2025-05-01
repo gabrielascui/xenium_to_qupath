@@ -51,4 +51,4 @@ python xenium_to_qupath.py
 
 ## Contact
 
-For questions or issues, please contact [your-email@example.com].
+For questions or issues, please contact [gascui@lji.org].
