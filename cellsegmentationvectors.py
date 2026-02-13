@@ -6,7 +6,7 @@ import numpy as np
 import uuid  # For generating unique IDs
 
 # Path to the Zarr directory (adjust the path accordingly)
-zarr_dir = 'cells.zarr'
+zarr_dir = '/mnt/BioAdHoc/Groups/vd-vijay/fcastaneda/data/SpatialTrans/5k_pilot/igm-storage.ucsd.edu/20260115_XETG00386/output-XETG00386__0100344__Region_1__20260115__223833/cells.zarr'
 
 # pixel size
 psize = 0.2125

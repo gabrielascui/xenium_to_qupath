@@ -22,7 +22,7 @@ This repository contains a Python script designed to facilitate the conversion o
 
 ## Usage
 
-Modify the script to use the appropiated pixel size and paht the the `cells.zarr` file from the Xenium Ranger output. 
+Modify the script to use the appropiated pixel size and path the the `cells.zarr` file from the Xenium Ranger output. 
 
 ```python
 # Path to the Zarr directory (adjust the path accordingly)
