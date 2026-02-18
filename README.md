@@ -24,6 +24,14 @@ This repository contains a Python script designed to facilitate the conversion o
 
 Modify the script to use the appropiated pixel size and path the the `cells.zarr` file from the Xenium Ranger output. 
 
+Before Running script, extract the `cells.zarr.zip` file.
+
+```{bash}
+unzip cells.zarr.zip -d cells.zarr
+```
+
+Define the `zarr_dir` and the pixel size in the scripts.
+
 ```python
 # Path to the Zarr directory (adjust the path accordingly)
 zarr_dir = 'cells.zarr'
