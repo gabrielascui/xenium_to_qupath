@@ -43,19 +43,12 @@ psize = 0.2125
 
 Run the script with the following command:
 ```bash
-python xenium_to_qupath.py 
+python cellsegmentationvectors.py --zarr_dir /path/to/cells.zarr --output_dir /path/to/output/directory
 ```
 
 ### Output
 
 Output file will be a geojson file named `'exported_cells.geojson'`.
-
-## Example
-
-```bash
-python xenium_to_qupath.py 
-```
-
 
 ## Contact
 

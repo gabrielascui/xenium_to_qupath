@@ -4,9 +4,18 @@ import zarr
 import json
 import numpy as np
 import uuid  # For generating unique IDs
+import argparse
+
+# parse arguments
+parser = argparse.ArgumentParser(description='Process Zarr cell segmentation data and export to GeoJSON.')
+parser.add_argument('--zarr_dir', type=str, help='Path to the Zarr directory containing cell segmentation data.')
+parser.add_argument('--output_dir', type=str, default='.', help='Path to the output directory for the GeoJSON file.')
+args = parser.parse_args()  
+
 
 # Path to the Zarr directory (adjust the path accordingly)
-zarr_dir = '/mnt/BioAdHoc/Groups/KronenbergLab/gascui/spatial_pilot/muspan_test/cells.zarr'
+# zarr_dir = '/mnt/BioAdHoc/Groups/KronenbergLab/gascui/spatial_pilot/muspan_test/cells.zarr'
+zarr_dir = args.zarr_dir
 
 # pixel size
 psize = 0.2125
@@ -33,7 +42,7 @@ def convert_to_native(obj):
     return obj
 
 
-#helper function to convert hex to Xenium string
+# helper function to convert hex to Xenium string
 # https://www.10xgenomics.com/support/software/xenium-onboard-analysis/1.9/analysis/xoa-output-zarr#cellID
 def shiftCharacters(c):
     return chr(ord('a')+int(c,16))
@@ -128,7 +137,12 @@ feature_collection = {
 native_feature_collection = convert_to_native(feature_collection)
 
 # Write the FeatureCollection to a GeoJSON file
-with open('exported_cells.geojson', 'w') as geojson_file:
+with open(f'{args.output_dir}/exported_cells.geojson', 'w') as geojson_file:
     json.dump(native_feature_collection, geojson_file, separators=(',', ':'), indent=4)
 
 print("GeoJSON file with separate nucleus and cell boundaries created successfully.")
+
+
+# Usage:
+# python cellsegmentationvectors.py --zarr_dir /path/to/cells.zarr --output_dir /path/to/output/directory
+
